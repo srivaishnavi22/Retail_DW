@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/10/2024 11:37:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-6T98MCG9"
+  DTS:CreatorName="LAPTOP-6T98MCG9\N R RAVI"
+  DTS:DTSID="{1D077863-41E6-4ABF-B1E0-CD78D95F43D9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package4"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{DF21C52B-E324-4D73-83C3-AEDB16644ED8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A2385B7C-C872-4042-B44D-84CB5054274F}"
+      DTS:ObjectName="infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=infodata16.mbs.tamu.edu;Initial Catalog=601_grp4_ProductSalesStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package4-{A2385B7C-C872-4042-B44D-84CB5054274F}infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Calculate Sales from Price, Move and Quantity"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BB3CBE4F-41B1-451B-9A38-633F9405FCE3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Calculate Sales from Price, Move and Quantity"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A2385B7C-C872-4042-B44D-84CB5054274F}"
+          SQLTask:SqlStatementSource="UPDATE Stage_Movement_v2&#xA;SET       Sales = CASE WHEN QTY = 0 THEN 0 ELSE PRICE * MOVE / QTY END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="300,42.6666666666667"
+          Id="Package\Calculate Sales from Price, Move and Quantity"
+          TopLeft="211.87499052845,71.8421044743458" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

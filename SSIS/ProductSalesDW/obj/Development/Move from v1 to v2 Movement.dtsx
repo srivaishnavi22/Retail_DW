@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/12/2024 11:03:25 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-6T98MCG9"
+  DTS:CreatorName="LAPTOP-6T98MCG9\N R RAVI"
+  DTS:DTSID="{4477DA91-5D3A-46F1-9AFE-AFCDAE6E1944}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Move from v1 to v2 Movement"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{934240A7-9E1F-4C80-B584-1A4039ED9C46}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D827D587-FF52-4F43-963D-4CB94DB1484C}"
+      DTS:ObjectName="infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=infodata16.mbs.tamu.edu;Initial Catalog=601_grp4_ProductSalesStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package14-{D827D587-FF52-4F43-963D-4CB94DB1484C}infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{979F0DDA-0EFF-46D4-BB8A-E152E521B59D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D827D587-FF52-4F43-963D-4CB94DB1484C}"
+          SQLTask:SqlStatementSource="INSERT INTO Stage_Movement_v2&#xA;             (STORE, UPC, WEEK, [MOVE], QTY, PRICE, SALE, PROFIT, PROFIT_MARGIN, Sales)&#xA;SELECT STORE, UPC, CASE WHEN WEEK IS NOT NULL AND TRY_CAST(WEEK AS INT) IS NOT NULL THEN CAST(WEEK AS INT) ELSE NULL END AS WEEK, CASE WHEN [MOVE] IS NOT NULL AND TRY_CAST([MOVE] AS DECIMAL(10, 2)) IS NOT NULL THEN CAST([MOVE] AS DECIMAL(10, 2)) &#xA;             ELSE NULL END AS [MOVE], CASE WHEN QTY IS NOT NULL AND TRY_CAST(QTY AS INT) IS NOT NULL THEN CAST(QTY AS INT) ELSE NULL END AS QTY, CASE WHEN PRICE IS NOT NULL AND TRY_CAST(PRICE AS DECIMAL(10, 2)) IS NOT NULL THEN CAST(PRICE AS DECIMAL(10, &#xA;             2)) ELSE NULL END AS PRICE, SALE, CASE WHEN PROFIT IS NOT NULL AND TRY_CAST(PROFIT AS DECIMAL(10, 2)) IS NOT NULL THEN CAST(PROFIT AS DECIMAL(10, 2)) ELSE NULL END AS PROFIT, CASE WHEN PROFIT IS NOT NULL AND TRY_CAST(PROFIT AS DECIMAL(10, 2)) &#xA;             IS NOT NULL THEN CAST(PROFIT AS DECIMAL(10, 2)) * 100 ELSE NULL END AS PROFIT_MARGIN, CASE WHEN QTY IS NOT NULL AND TRY_CAST(QTY AS INT) = 0 THEN 0 WHEN PRICE IS NOT NULL AND [MOVE] IS NOT NULL AND QTY IS NOT NULL AND &#xA;             TRY_CAST(PRICE AS DECIMAL(10, 2)) IS NOT NULL AND TRY_CAST([MOVE] AS DECIMAL(10, 2)) IS NOT NULL AND TRY_CAST(QTY AS INT) IS NOT NULL THEN CAST(PRICE AS DECIMAL(10, 2)) * CAST([MOVE] AS DECIMAL(10, 2)) / NULLIF (CAST(QTY AS INT), 0) ELSE NULL &#xA;             END AS Sales&#xA;FROM   Stage_Movement_v1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Execute SQL Task"
+          TopLeft="248.749988880009,41.0526311281976" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

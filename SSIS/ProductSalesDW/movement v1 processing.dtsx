@@ -1,0 +1,137 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/12/2024 7:06:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-6T98MCG9"
+  DTS:CreatorName="LAPTOP-6T98MCG9\N R RAVI"
+  DTS:DTSID="{860FD330-17F4-48F0-AC7D-C2A06FEFDE18}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package13"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{93920B80-42BB-4165-9BAD-09D7E25D16A6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CC4944B5-79FE-4D31-BE54-4AEFB02DDC7B}"
+      DTS:ObjectName="infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=infodata16.mbs.tamu.edu;Initial Catalog=601_grp4_ProductSalesStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package13-{CC4944B5-79FE-4D31-BE54-4AEFB02DDC7B}infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Replace 0, 1 and '' from sale column to Null, replace move, qty, price, profit to 0 if ''"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D5829E3B-AAE7-4ED5-8D6D-B0B1DEA14AF9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Replace 0, 1 and '' from sale column to Null, replace move, qty, price, profit to 0 if ''"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC4944B5-79FE-4D31-BE54-4AEFB02DDC7B}"
+          SQLTask:SqlStatementSource="UPDATE Stage_Movement_v1&#xA;SET       SALE = CASE WHEN SALE = '' OR&#xA;             SALE = '0' OR&#xA;             SALE = '1' THEN NULL ELSE SALE END, MOVE = CASE WHEN [MOVE] = '' THEN '0' ELSE [MOVE] END, QTY = CASE WHEN QTY = '' THEN '0' ELSE QTY END, PRICE = CASE WHEN PRICE = '' THEN '0' ELSE PRICE END, PROFIT = CASE WHEN PROFIT = '' THEN '0' ELSE PROFIT END, &#xA;             OK = CASE WHEN OK = '' THEN NULL ELSE OK END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update columns STORE, WEEK, UPC, if they are null or have garbage values, drop the row"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{66DD17FD-AF19-4A45-A6CD-F97A16DC6DB2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update columns STORE, WEEK, UPC, if they are null or have garbage values, drop the row"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC4944B5-79FE-4D31-BE54-4AEFB02DDC7B}"
+          SQLTask:SqlStatementSource="DELETE FROM Stage_Movement_v1&#xA;WHERE (STORE = '.') OR&#xA;             (STORE IS NULL) OR&#xA;             (STORE = '') OR&#xA;             (UPC IS NULL) OR&#xA;             (UPC = '2') OR&#xA;             (UPC = '') OR&#xA;             (WEEK = '') OR&#xA;             (WEEK IS NULL)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1B6C88CD-A73C-440A-A635-3135FC483CD1}"
+      DTS:From="Package\Update columns STORE, WEEK, UPC, if they are null or have garbage values, drop the row"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Replace 0, 1 and '' from sale column to Null, replace move, qty, price, profit to 0 if ''" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="512,42.6666666666667"
+          Id="Package\Update columns STORE, WEEK, UPC, if they are null or have garbage values, drop the row"
+          TopLeft="201.249991003424,39.1052623991326" />
+        <NodeLayout
+          Size="468,42.6666666666667"
+          Id="Package\Replace 0, 1 and '' from sale column to Null, replace move, qty, price, profit to 0 if ''"
+          TopLeft="214.999990388751,122.614033968358" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="457.249991003424,81.7719290657992">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.25000061467313,40.8421049025585"
+              Start="0,0"
+              End="-8.25000061467313,33.3421049025585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4210524512792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.4210524512792"
+                    Point2="0,20.4210524512792"
+                    Point3="-4,20.4210524512792" />
+                  <mssgle:LineSegment
+                    End="-4.25000061467313,20.4210524512792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.25000061467313,20.4210524512792"
+                    Point2="-8.25000061467313,20.4210524512792"
+                    Point3="-8.25000061467313,24.4210524512792" />
+                  <mssgle:LineSegment
+                    End="-8.25000061467313,33.3421049025585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

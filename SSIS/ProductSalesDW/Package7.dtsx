@@ -1,0 +1,563 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/11/2024 1:15:05 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-6T98MCG9"
+  DTS:CreatorName="LAPTOP-6T98MCG9\N R RAVI"
+  DTS:DTSID="{39E844FF-1EB2-404C-A84E-BBB7B3F68579}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package7"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{0EA986DF-D7D6-4A38-B379-3CD4687195CB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E031B631-557D-40DC-86E5-D212CA67C31A}"
+      DTS:ObjectName="infodata16.mbs.tamu.edu.601_grp4_ProductSalesDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=infodata16.mbs.tamu.edu;Initial Catalog=601_grp4_ProductSalesDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package7-{E031B631-557D-40DC-86E5-D212CA67C31A}infodata16.mbs.tamu.edu.601_grp4_ProductSalesDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{467471BD-1E3F-4404-BA25-3D9F3F953D20}"
+      DTS:ObjectName="infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=infodata16.mbs.tamu.edu;Initial Catalog=601_grp4_ProductSalesStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package7-{467471BD-1E3F-4404-BA25-3D9F3F953D20}infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy data to dimProduct"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{03334E35-7DC4-4A40-97C3-8CBA9ABE9046}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy data to dimProduct">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy data to dimProduct\Dimensional Product Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Dimensional Product Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy data to dimProduct\Dimensional Product Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].Columns[UPC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="UPC"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[UPC]"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[UPC]" />
+                    <inputColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].Columns[DESCRIPTION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DESCRIPTION"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPTION]"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].Columns[SIZE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="SIZE"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[SIZE]"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[SIZE]" />
+                    <inputColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].Columns[CASE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CASE"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[CASE]"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[CASE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[UPC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="UPC" />
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[SIZE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SIZE" />
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input].ExternalColumns[CASE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CASE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy data to dimProduct\Dimensional Product Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy data to dimProduct\Dimensional Product Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Dimensional Product Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy data to dimProduct\Dimensional Product Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy data to dimProduct\Staged Product Data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Staged Product Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stage_UPC_v2]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy data to dimProduct\Staged Product Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[infodata16.mbs.tamu.edu.601_grp4_ProductSalesStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[UPC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[UPC]"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[UPC]"
+                      name="UPC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[DESCRIPTION]"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[DESCRIPTION]"
+                      name="DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[SIZE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[SIZE]"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[SIZE]"
+                      name="SIZE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[CASE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[CASE]"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].Columns[CASE]"
+                      name="CASE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[UPC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="UPC" />
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[SIZE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SIZE" />
+                    <externalMetadataColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output].ExternalColumns[CASE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CASE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[UPC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[UPC]"
+                      name="UPC" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[DESCRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[DESCRIPTION]"
+                      name="DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[SIZE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[SIZE]"
+                      name="SIZE" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[CASE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[CASE]"
+                      name="CASE" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy data to dimProduct.Paths[OLE DB Source Output]"
+              endId="Package\Copy data to dimProduct\Dimensional Product Table.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy data to dimProduct\Staged Product Data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove Duplicate UPCs"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{747847B0-4DED-4DEE-AC78-772CFA212EA8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove Duplicate UPCs"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{467471BD-1E3F-4404-BA25-3D9F3F953D20}"
+          SQLTask:SqlStatementSource="WITH CTE AS (SELECT UPC, DESCRIPTION, SIZE, [CASE], ROW_NUMBER() OVER (PARTITION BY UPC&#xA;                       ORDER BY &#xA;                                        (SELECT NULL)) AS RowNum&#xA;FROM   Stage_UPC_v2)&#xA;    DELETE FROM CTE&#xA;   WHERE RowNum &gt; 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{90962622-88F4-450F-B4D5-3B10B6911763}"
+      DTS:From="Package\Remove Duplicate UPCs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy data to dimProduct" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="196.666666666667,42.6666666666667"
+          Id="Package\Copy data to dimProduct"
+          TopLeft="242.999989382923,95.8157884820346" />
+        <NodeLayout
+          Size="197.333333333334,42.6666666666667"
+          Id="Package\Remove Duplicate UPCs"
+          TopLeft="228.749989774078,22.5789471205087" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="327.416656440745,65.2456137871753">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.9166662755111,30.5701746948593"
+              Start="0,0"
+              End="13.9166662755111,23.0701746948593">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.2850873474297" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.2850873474297"
+                    Point2="0,15.2850873474297"
+                    Point3="4,15.2850873474297" />
+                  <mssgle:LineSegment
+                    End="9.91666627551109,15.2850873474297" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.91666627551109,15.2850873474297"
+                    Point2="13.9166662755111,15.2850873474297"
+                    Point3="13.9166662755111,19.2850873474297" />
+                  <mssgle:LineSegment
+                    End="13.9166662755111,23.0701746948593" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy data to dimProduct">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178.666666666667,42.6666666666667"
+          Id="Package\Copy data to dimProduct\Staged Product Data"
+          TopLeft="452.999986499548,53.9999983906746" />
+        <NodeLayout
+          Size="208,42.6666666666667"
+          Id="Package\Copy data to dimProduct\Dimensional Product Table"
+          TopLeft="441.833320165674,130.166662787398" />
+        <EdgeLayout
+          Id="Package\Copy data to dimProduct.Paths[OLE DB Source Output]"
+          TopLeft="544.083319999278,96.6666650573413">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.4999977300565"
+              Start="0,0"
+              End="0,25.9999977300565">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9999977300565" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy data to dimProduct\Dimensional Product Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy data to dimProduct\Staged Product Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
